@@ -44,8 +44,7 @@ class Joueur:
         Returns:
             Lancer: Le lancer créé
         """
-        self.des.pop()
-        return Lancer(self.des[-1], coordonnees, angle, puissance) #spécial
+        return Lancer(self.des.pop(), coordonnees, angle, puissance) #spécial
 
     def choisir_lancer(self):
         """
@@ -126,7 +125,14 @@ class Joueur:
         Returns:
             tuple: Coordonnées traitées (None si invalide)
         """
-        # VOTRE CODE ICI
+        entree = entree.split(',')
+        if len(entree) != 2:
+            return None
+        if not entree[0].isnumeric() or not entree[1].isnumeric():
+            return None
+        if not self.arene.dans_arene((int(entree[0]), int(entree[1]))):
+            return None
+        return int(entree[0]), int(entree[1])
 
     def traitement_angle(self, entree):
         """
@@ -144,7 +150,10 @@ class Joueur:
         Returns:
             str: Le point cardinal, en majuscule (None si invalide)
         """
-        # VOTRE CODE ICI
+        if entree.upper() in ANGLES.keys():
+            return entree.upper()
+        else:
+            return None
 
     def traitement_puissance(self, entree):
         """
@@ -160,7 +169,11 @@ class Joueur:
         Returns:
             int: L'entier représenté par l'entrée (None si invalide)
         """
-        # VOTRE CODE ICI
+        if not entree.isnumeric():
+            return None
+        if not 1 <= int(entree) <= self.arene.dimension:
+            return None
+        return int(entree)
 
     def choisir_continuer(self):
         """
@@ -247,7 +260,8 @@ class Joueur:
         Returns:
             bool: True si le joueur est éliminé, False sinon.
         """
-        # VOTRE CODE ICI
+        if self.des == 0:
+            return True
 
     def rendre_de(self, de):
         """
@@ -257,7 +271,8 @@ class Joueur:
         Args:
             de (De): Le dé à ajouter
         """
-        # VOTRE CODE ICI
+        de.ranger()
+        self.des.append(de)
 
     def table_rase(self):
         """
@@ -268,7 +283,10 @@ class Joueur:
         Returns:
             liste: La liste des lancers
         """
-        # VOTRE CODE ICI
+        lancers = []
+        for i in range(self.des):
+            lancers.append(self.creer_lancer(self.piger_coordonnees(), self.piger_angle(), self.piger_puissance()))
+        return lancers
 
     def __str__(self):
         """
