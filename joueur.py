@@ -262,6 +262,8 @@ class Joueur:
         """
         if self.des == 0:
             return True
+        else:
+            return False
 
     def rendre_de(self, de):
         """

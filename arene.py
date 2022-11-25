@@ -63,7 +63,7 @@ class Arene:
         """
         for emplacement in lancer.trajectoire[:-1]:
             self.relancer_des_accroches(emplacement)
-        self.placer_nouveau_de(lancer.de, lancer.trajectoire[-1]) #spécial
+        self.placer_nouveau_de(lancer.de, lancer.trajectoire[-1])
 
     def relancer_des_accroches(self, trajectoire):
         """
@@ -75,7 +75,7 @@ class Arene:
         """
         for emplacement in trajectoire:
             if emplacement in self.des:
-                self.des[emplacement].lancer() #spécial
+                self.des[emplacement].lancer()
 
     def placer_nouveau_de(self, de, emplacement_final):
         """
@@ -94,7 +94,7 @@ class Arene:
             de.lancer()
             if emplacement_final in self.des:
                 self.des.pop(emplacement_final)
-            self.des[emplacement_final] = de    #might not work here
+            self.des[emplacement_final] = de
 
     def effectuer_plusieurs_lancers(self, liste_lancers):
         """
