@@ -284,7 +284,7 @@ class Joueur:
             liste: La liste des lancers
         """
         lancers = []
-        for i in range(self.des):
+        for i in range(len(self.des)):
             lancers.append(self.creer_lancer(self.piger_coordonnees(), self.piger_angle(), self.piger_puissance()))
         return lancers
 

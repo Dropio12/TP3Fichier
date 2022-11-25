@@ -140,7 +140,8 @@ class Arene:
         for emplacement in self.des:
             if self.des[emplacement].valeur == 1:
                 emplacements.append(emplacement)
-        self.retirer_de(emplacements[-1])
+        for emplacement in emplacements:
+            self.retirer_de(emplacement)
 
     def compter_valeurs(self):
         """
@@ -172,29 +173,13 @@ class Arene:
             joueur_en_cours (Joueur): le joueur à qui rendre les dés
 
         """
-        emplacements2 = []
-        emplacements2 = []
-        emplacements2 = []
-        emplacements2 = []
-        emplacements2 = []
-        emplacements2 = []
-
+        emplacements = []
         for emplacement in self.des:
             if comptes[self.des[emplacement].valeur] > 1:
                 emplacements.append(emplacement)
         for emplacement in emplacements:
             self.rendre_au_joueur(emplacement, joueur_en_cours)
 
-        if comptes[2] > 1:
-            self.rendre_au_joueur(joueur_en_cours, 2)
-        if comptes[3] > 1:
-            self.rendre_au_joueur(joueur_en_cours, 3)
-        if comptes[4] > 1:
-            self.rendre_au_joueur(joueur_en_cours, 4)
-        if comptes[5] > 1:
-            self.rendre_au_joueur(joueur_en_cours, 5)
-        if comptes[6] > 1:
-            self.rendre_au_joueur(joueur_en_cours, 6)
 
     def correspondance_existe(self, comptes):
         """
